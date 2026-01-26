@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: Projects
 
 #  MVP: A name and description of the project, at least one screenshot,

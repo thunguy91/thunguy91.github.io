@@ -1,0 +1,65 @@
+# _data/home.yml for Thu Nguyen Portfolio
+
+# ---------------- NAVBAR ----------------
+navbar_entries:
+  - title: Home
+    url: /
+
+  # - title: About
+  #   url: /about
+
+  - title: Contact
+    url: /contact
+
+  - title: Projects
+    url: /project
+
+  - title: Resume
+    url: /resume
+
+# ---------------- PROJECT CARDS ----------------
+project_entries:
+  - title: Portfolio Website
+    url: overview-post
+    desc: My personal portfolio showcasing my skills, projects, and experience.
+    highlight: WIP
+
+  - title: Example Project 1
+    url: overview-post
+    desc: A responsive web app built with HTML, CSS, and JavaScript.
+
+  - title: Example Project 2
+    url: overview-post
+    desc: A CRUD application using Spring Boot and MySQL.
+
+  - title: Example Project 3
+    url: overview-post
+    desc: A blog site built with Jekyll and GitHub Pages.
+
+# ---------------- FOOTER ----------------
+footer_entries:
+  - title: GitHub
+    url: https://github.com/thunguy91
+
+  - title: LinkedIn
+    url: https://www.linkedin.com/in/thu-nguyen-4b4688265/
+
+  # - title: Feed
+  #   url: feed.xml
+
+# ---------------- MISC ----------------
+misc_entries:
+  - title: Example Vertical List
+    url: false
+
+  - title: Blog Posts
+    post_list: true
+    url: false
+
+  - title: Resources
+    url: false
+    entries:
+      - title: Jekyll
+        url: https://jekyllrb.com
+      - title: Moonwalk Theme
+        url: https://github.com/abhinavs/moonwalk

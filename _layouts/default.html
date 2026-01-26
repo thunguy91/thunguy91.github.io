@@ -1,36 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>{{ page.title }}</title>
+<html lang="{{ page.lang | default: "en" }}" data-theme="{{ site.theme_config.appearance | default: "auto" }}">
+  {%- include head.html -%}
 
-  <!-- Your CSS -->
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-</head>
+  <body>
+    <!-- HEADER / NAVBAR -->
+    <header class="site-header">
+      <ul class="horizontal-list">
+        {% for item in site.data.home.navbar_entries %}
+          <li><a href="{{ item.url | relative_url }}">{{ item.title | capitalize }}</a></li>
+        {% endfor %}
+      </ul>
 
-<body>
+      {% if site.theme_config.appearance_toggle %}
+        {% include toggle_theme_button.html %}
+      {% endif %}
+    </header>
 
-  <!-- HEADER -->
-  <header>
-    <h1>Thu Nguyen</h1>
+    <!-- MAIN CONTENT -->
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        {{ content }}
 
-    <nav>
-      <a href="/">Home</a>
-      <a href="/project">Projects</a>
-      <a href="/resume">Resume</a>
-      <a href="/contact">Contact</a>
-    </nav>
-  </header>
+        <!-- PROJECT CARDS: Only show if layout is 'project' -->
+        {% if page.layout == "project" %}
+          <ul class="horizontal-list project-cards">
+            {% for project in site.data.home.project_entries %}
+              <li class="card">
+                <div class="header">{{ project.title }}</div>
+                <div class="body">{{ project.desc }}</div>
+                {% if project.highlight %}
+                  <div class="highlight">{{ project.highlight }}</div>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
 
-  <!-- MAIN CONTENT -->
-  <main>
-    {{ content }}
-  </main>
+        <!-- CREDITS -->
+        <div class="credits">
+          {%- if site.theme_config.show_copyright == true -%}
+            &copy;&nbsp;{{ "now" | date: "%Y" }}&nbsp;{{ site.author }}
+            &nbsp;•&nbsp;
+          {%- endif -%}
+          Theme&nbsp; <a href="https://github.com/abhinavs/moonwalk" target="_blank" rel="noreferrer">Moonwalk</a>
+        </div>
+      </div>
+    </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>© {{ site.time | date: "%Y" }} Thu Nguyen</p>
-  </footer>
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <ul class="horizontal-list footer-list">
+        {% for item in site.data.home.footer_entries %}
+          <li><a href="{{ item.url | relative_url }}">{{ item.title | capitalize }}</a></li>
+        {% endfor %}
+      </ul>
+    </footer>
 
-</body>
+    <!-- Soopr Script (if using) -->
+    {%- if site.soopr -%}
+      {%- if site.soopr.publish_token and jekyll.environment == "production" -%}
+        <script async defer data-soopr-token="{{ site.soopr.publish_token }}" src="https://sdk.soopr.co/soopr.js"></script>
+      {%- else -%}
+        <script async defer src="https://sdk.soopr.co/soopr.js"></script>
+      {%- endif -%}
+    {%- endif -%}
+
+  </body>
 </html>
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="{{ page.lang | default: "en" }}" data-theme="{{ site.theme_config.appearance | default: "auto" }}">
+  {%- include head.html -%}
+
+  <body>
+    <!-- HEADER / NAVBAR -->
+    <!-- <header class="site-header">
+      <nav>
+        <ul class="menu">
+          {% for item in site.data.home.navbar_entries %}
+            <li>
+              <a href="{{ item.url | relative_url }}">{{ item.title | capitalize }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+
+      {% if site.theme_config.appearance_toggle %}
+        {% include toggle_theme_button.html %}
+      {% endif %}
+    </header> -->
+
+    <!-- MAIN CONTENT -->
+    <!-- <main class="page-content" aria-label="Content">
+      <div class="w">
+        {{ content }} -->
+
+        <!-- PROJECT CARDS: Only show on pages with layout 'project' -->
+        <!-- {% if page.layout == "project" %}
+          <section class="projects">
+            {% for project in site.data.home.project_entries %}
+              <div class="project-card">
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.desc }}</p>
+                {% if project.highlight %}
+                  <span class="highlight">{{ project.highlight }}</span>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </section>
+        {% endif %} -->
+
+        <!-- CREDITS -->
+        <!-- <div class="credits">
+          {%- if site.theme_config.show_copyright == true -%}
+            &copy;&nbsp;{{ "now" | date: "%Y" }}&nbsp;{{ site.author }}
+            &nbsp;•&nbsp;
+          {%- endif -%}
+          Theme&nbsp; <a href="https://github.com/abhinavs/moonwalk" target="_blank" rel="noreferrer">Moonwalk</a>
+        </div>
+      </div>
+    </main> -->
+
+    <!-- FOOTER -->
+    <!-- <footer class="site-footer">
+      <ul class="footer-links">
+        {% for item in site.data.home.footer_entries %}
+          <li>
+            <a href="{{ item.url | relative_url }}">{{ item.title | capitalize }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </footer> -->
+
+    <!-- Soopr Script (if using) -->
+    <!-- {%- if site.soopr -%}
+      {%- if site.soopr.publish_token and jekyll.environment == "production" -%}
+        <script async defer data-soopr-token="{{ site.soopr.publish_token }}" src="https://sdk.soopr.co/soopr.js"></script>
+      {%- else -%}
+        <script async defer src="https://sdk.soopr.co/soopr.js"></script>
+      {%- endif -%}
+    {%- endif -%}
+
+  </body>
+</html> -->
